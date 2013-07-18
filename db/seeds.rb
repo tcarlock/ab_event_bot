@@ -1,7 +1,1 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+EventSource.create(url: 'http://events.7x7.com/search?when=future&featured=1&sort_by=date', last_scraped: Time.now)

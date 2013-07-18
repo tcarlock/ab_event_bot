@@ -1,0 +1,57 @@
+<h3>Sources</h3>
+<table class="table" class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>URL</th>
+      <th>Last Scraped</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @sources.each do |s| %>
+      <tr>
+        <td>
+          <%= s.url %>
+        </td>
+        <td>
+          <%= s.last_scraped %>
+        </td>
+        <td>
+          <a class="hidden scrape-link btn">Scrape Site</a>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<h3>Results</h3>
+<table class="table" class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Date</th>
+      <th>Link</th>
+      <th>Location</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @events.each do |e| %>
+      <tr>
+        <td>
+          <%= link_to e.css('h4 a').first.content, e.css('h4 a').first.attributes["href"].value %>
+          <br />
+          <%= @doc.css('head title').first.content.split('|')[1].strip %>
+        </td>
+        <td>
+          <%= e.css('p.start-time strong').first.content %>
+        </td>
+        <td>
+          <%= e.css('p.venue').first.content %>
+        </td>
+        <td>
+          <a class="approve-event btn">Approve Event</a>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
