@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.11'
+ruby '2.0.0'
+
+gem 'rails', '3.2.12'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -26,7 +28,7 @@ gem 'font-awesome-sass-rails'
 
 gem 'rabl'
 gem 'nokogiri'
-gem 'emdebly'
+gem 'embedly'
 
 group :development, :test do
   gem 'rspec-rails'
