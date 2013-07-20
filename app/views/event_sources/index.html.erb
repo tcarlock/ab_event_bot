@@ -1,9 +1,10 @@
 <%= link_to 'Back to Events', root_url %>
+<%= link_to 'Create New Source', new_event_source_url %>
 <h3>Sources</h3>
 <table class="table" class="table table-bordered table-striped">
   <thead>
     <tr>
-      <th>URL</th>
+      <th>Source</th>
       <th>Last Scraped</th>
       <th></th>
     </tr>
@@ -12,10 +13,13 @@
     <% @sources.each do |source| %>
       <tr>
         <td>
+          <strong>
+            <%= URI(source.url).host %>
+          </strong>
           <%= source.url %>
         </td>
         <td>
-          <%= source.last_scraped %>
+          <%= source.last_scraped.strftime("%m/%d/%Y at %l:%M %p") %>
         </td>
         <td>
           <a class="hidden scrape-link btn">Scrape Site</a>

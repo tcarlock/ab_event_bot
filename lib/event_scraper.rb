@@ -1,8 +1,5 @@
-# require 'processor_queue'
-# require 'json'
-# require 'curb'                              # to poll embed.ly
-
-# Dir[File.dirname(__FILE__) + '/event_source_processors/*.rb'].each {|file| require file}
+require 'nokogiri'
+require 'open-uri'
 
 module EventScraper
   class Event
@@ -13,16 +10,7 @@ module EventScraper
     tag_score_threshold = 15
     results = []
 
-    # queue = ProcessorQueue.new do
-    #   use Processors::SevenBySevenProcessor
-    # end
-
     sources.each do |source|
-      # source_results = {}
-      # source_results[:events] = queue.process(source.url)
-      # source_results[:url] = source.url
-      # results << source_results
-
       source_results = {}
       source_results[:url] = source.url
       source_results[:host] = URI(source.url).host
@@ -38,9 +26,9 @@ module EventScraper
         # embedly_api = Embedly::API.new :key => 'a93b3ce30d4a4625a92d4881f39d9aff', :user_agent => 'Mozilla/5.0 (compatible; mytestapp/1.0; my@email.com)'
 
         data = EventScraper.api_call(event.url)
-        binding.pry
-        event.details = data['description']
-        event.images = data['images']
+
+        event.details = data['description'] || ''
+        event.images = data['images'] || []
         event.tags = data['keywords'].select { |tag| tag['score'].to_i > tag_score_threshold }
 
         source_results[:events] << event

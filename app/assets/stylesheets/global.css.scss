@@ -18,9 +18,13 @@ $baseFontSize: 13px;
   /*border-bottom: 1px solid #dddddd;*/
 }
 
+.image-list li,
 .tag-list li {
   display: inline-block;
   float: left;
+}
+
+.tag-list li {
   margin: 2px;
   padding: 3px 7px;
   background-color: #0088cc;

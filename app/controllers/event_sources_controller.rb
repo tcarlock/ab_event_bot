@@ -5,6 +5,14 @@ class EventSourcesController < ApplicationController
     @sources = EventSource.all
   end
 
+  def new
+    @source = EventSource.new
+  end
+
+  def create
+    EventSource.create(params[:event_source])
+  end
+
   def update
     @source.update_attributes(params[:event_source])
     redirect_to event_sources_url, notice: 'This source has been updated'
