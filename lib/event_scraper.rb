@@ -7,11 +7,6 @@ module EventScraper
     results = []
 
     sources.each do |source|
-      # source_results = {}
-      # source_results[:url] = source.url
-      # source_results[:host] = URI(source.url).host
-      # source_results[:events] = []
-
       Nokogiri::HTML(open(source.url)).css(source.event_item_selector).each do |item|
         event_url = item.css(source.title_link_selector).first.attributes['href'].value
         event = Event.find_or_initialize_by_event_url(event_url)
@@ -27,10 +22,7 @@ module EventScraper
           image_urls: meta_data['images'] || [],
           keywords: meta_data['keywords'].select { |tag| tag['score'].to_i > tag_score_threshold }
         )
-
-        # source_results[:events] << event
       end
-      # results << source_results
     end
 
     results

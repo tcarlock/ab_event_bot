@@ -1,7 +1,7 @@
 <%= link_to 'Back to Sources', event_sources_url, :class => 'admin-link' %>
 <%= form_for @event, html: { :class => 'form-horizontal' } do |f| %>
   <fieldset>
-    <legend>Update This Event</legend>
+    <legend>Update This Event (Scraped <%= @event.created_at.strftime("%m/%d/%Y") %> from &quot;<%= @event.event_source.title %>&quot;)</legend>
     <%= render partial: 'events/form', locals: { f: f }  %>
     <div class="form-actions">
       <%= link_to 'Cancel', event_sources_url %>

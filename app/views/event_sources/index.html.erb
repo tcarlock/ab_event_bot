@@ -4,7 +4,9 @@
 <table class="table" class="table table-bordered table-striped">
   <thead>
     <tr>
-      <th>Source</th>
+      <th>Title</th>
+      <th>URL</th>
+      <th>Region</th>
       <th>Last Scraped</th>
       <th></th>
     </tr>
@@ -14,9 +16,14 @@
       <tr>
         <td>
           <strong>
-            <%= URI(source.url).host %>
+            <%= source.title %>
           </strong>
+        </td>
+        <td>
           <%= source.url %>
+        </td>
+        <td>
+          <%= source.region %>
         </td>
         <td>
           <%= source.last_scraped.strftime("%m/%d/%Y at %l:%M %p") %>

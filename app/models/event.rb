@@ -4,5 +4,5 @@ class Event < ActiveRecord::Base
   serialize :image_urls, Array
   serialize :keywords, Array
 
-  has_one :event_source
+  belongs_to :event_source
 end
