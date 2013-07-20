@@ -10,7 +10,13 @@ class EventSourcesController < ApplicationController
   end
 
   def create
-    EventSource.create(params[:event_source])
+    @source = EventSource.new(params[:event_source])
+
+    if @source.save
+      redirect_to @source
+    else
+      render 'new'
+    end
   end
 
   def update

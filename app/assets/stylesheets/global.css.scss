@@ -9,6 +9,16 @@ $baseFontSize: 13px;
   border-top: 0;
 }*/
 
+#body_container {
+  margin-top: 30px;
+}
+
+.admin-link {
+  font-size: 1.2em;
+  display: inline-block;
+  margin-right: 7px;
+}
+
 .event-title a {
   font-weight: bold;
 }
@@ -29,4 +39,15 @@ $baseFontSize: 13px;
   padding: 3px 7px;
   background-color: #0088cc;
   color: #fff;
+}
+
+#page_preview_modal {
+  width: 880px;
+  margin-left: -470px;
+  top: 5%;
+
+  .modal-body {
+    height: 500px;
+    max-height: 500px;
+  }
 }

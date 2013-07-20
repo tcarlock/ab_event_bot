@@ -1,4 +1,4 @@
-<%= link_to 'Manage Sources', event_sources_url %>
+<%= link_to 'Manage Sources', event_sources_url, :class => 'admin-link' %>
 <h3>Results</h3>
 <%= select_tag :source, options_from_collection_for_select(@sources, 'id', 'url') %>
 <table class="table table-condensed">
@@ -27,7 +27,10 @@
             <%= e.location %>
           </td>
           <td>
-            <a class="approve-event btn btn-warning">Approve Event</a>
+            <a class="preview-event btn btn-primary" href="<%= e.url %>">Preview Event</a>
+            <br />
+            <br />
+            <a class="approve-event btn btn-danger">Approve Event</a>
           </td>
         </tr>
         <tr class="separator">
@@ -35,7 +38,7 @@
             <strong>Tags:</strong>
             <ul class="tag-list unstyled">
               <% e.tags.each do |tag| %>
-                <li><%= tag["name"] %></li>
+                <li><%= tag["name"] %> <%= tag["score"] %></li>
               <% end %>
             </ul> 
           </td>
@@ -52,3 +55,16 @@
     <% end %>
   </tbody>
 </table>
+<div id="page_preview_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Event Preview</h3>
+  </div>
+  <div class="modal-body">
+    <iframe id="page_preview_frame" width="840" height="600"></iframe>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <button class="btn btn-primary">Save changes</button>
+  </div>
+</div>

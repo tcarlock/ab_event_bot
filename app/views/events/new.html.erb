@@ -1,0 +1,11 @@
+<%= link_to 'Back to Events', root_url, :class => 'admin-link' %>
+<%= form_for @event, html: { :class => 'form-horizontal' } do |f| %>
+  <fieldset>
+    <legend>Create a New Event</legend>
+    <%= render partial: 'events/form', locals: { f: f }  %>
+    <div class="form-actions">
+      <%= link_to 'Cancel', event_sources_url %>
+      <%= f.submit 'Save Changes', :class => 'btn btn-primary' %>
+    </div>
+  </fieldset>
+<% end %>
