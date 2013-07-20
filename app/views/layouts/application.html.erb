@@ -7,8 +7,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
   <div id="body_container" class="container well">
+    <%= link_to root_url do %>
+      <i class="icon-home icon-2x"></i>
+    <% end %>
+    &nbsp;
+    &nbsp;
     <%= yield %>
   </div>
 

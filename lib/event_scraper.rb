@@ -9,26 +9,29 @@ module EventScraper
     sources.each do |source|
       Nokogiri::HTML(open(source.url)).css(source.event_item_selector).each do |item|
         event_url = item.css(source.title_link_selector).first.attributes['href'].value
-        event = Event.find_or_initialize_by_event_url(event_url)
-        meta_data = EventScraper.api_call(event.event_url)
 
-        event.update_attributes(
-          event_source_id: source.id,
-          title: item.css(source.title_link_selector).first.content,
-          location: item.css(source.location_selector).first.content,
-          date_time_string: item.css(source.date_selector).first.content.strip,
-          event_url: item.css(source.title_link_selector).first.attributes['href'].value,
-          description: (meta_data['description'] || '').strip,
-          image_urls: meta_data['images'] || [],
-          keywords: meta_data['keywords'].select { |tag| tag['score'].to_i > tag_score_threshold }
-        )
+        unless Event.exists?(event_url: event_url)
+          event = Event.new
+          meta_data = EventScraper.embedly_api_call(event.event_url)
+
+          event.update_attributes(
+            event_source_id: source.id,
+            title: item.css(source.title_link_selector).first.content,
+            location: item.css(source.location_selector).first.content,
+            date_time_string: item.css(source.date_selector).first.content.strip,
+            event_url: item.css(source.title_link_selector).first.attributes['href'].value,
+            description: (meta_data['description'] || '').strip,
+            image_urls: meta_data['images'] || [],
+            keywords: meta_data['keywords'].select { |tag| tag['score'].to_i > tag_score_threshold }
+          )
+        end
       end
     end
 
     results
   end
 
-  def self.api_call url
+  def self.embedly_api_call url
     JSON.parse(Curl.get("http://api.embed.ly/1/extract?key=a93b3ce30d4a4625a92d4881f39d9aff&url=#{url}").body_str)
   end
 end
