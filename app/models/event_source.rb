@@ -5,7 +5,6 @@ class EventSource < ActiveRecord::Base
   validates :title, presence: :true 
   validates :region, presence: :true 
   validates :url, presence: :true 
-  validates :last_scraped, presence: :true 
   validates :event_item_selector, presence: :true 
   validates :title_link_selector, presence: :true 
   validates :location_selector, presence: :true 

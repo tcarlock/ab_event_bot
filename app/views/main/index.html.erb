@@ -1,5 +1,5 @@
 <%= link_to 'Manage Sources', event_sources_url, :class => 'admin-link' %>
-<h3>Results</h3>
+<h3>Events for <%= @selected_source.title %></h3>
 <%= select_tag :source, options_from_collection_for_select(@sources, 'id', 'url') %>
 <table class="table table-condensed">
   <thead>
@@ -12,46 +12,42 @@
     </tr>
   </thead>
   <tbody>
-    <% @results.each do |r| %>
-      <% r[:events].each do |e| %>
-        <tr>
-          <td class="event-title span6">
-            <%= link_to e.title, e.url %>
-            <br />
-            Sourced from: <%= r[:host] %>
-          </td>
-          <td>
-            <%= e.date %>
-          </td>
-          <td>
-            <%= e.location %>
-          </td>
-          <td>
-            <a class="preview-event btn btn-primary" href="<%= e.url %>">Preview Event</a>
-            <br />
-            <br />
-            <a class="approve-event btn btn-danger">Approve Event</a>
-          </td>
-        </tr>
-        <tr class="separator">
-          <td colspan="1">
-            <strong>Tags:</strong>
-            <ul class="tag-list unstyled">
-              <% e.tags.each do |tag| %>
-                <li><%= tag["name"] %> <%= tag["score"] %></li>
-              <% end %>
-            </ul> 
-          </td>
-          <td colspan="3">
-            <strong>Images:</strong>
-            <ul class="image-list unstyled">
-              <% e.images.each do |image| %>
-                <li><%= image_tag image["url"], size: '100x100' %></li>
-              <% end %>
-            </ul> 
-          </td>
-        </tr> 
-      <% end %>
+    <% @events.each do |e| %>
+      <tr>
+        <td class="event-title span6">
+          <%= link_to e.title, e.event_url %>
+        </td>
+        <td>
+          <%= e.date_time_string %>
+        </td>
+        <td>
+          <%= e.location %>
+        </td>
+        <td>
+          <a class="preview-event btn btn-primary" href="<%= e.event_url %>">Preview Event</a>
+          <br />
+          <br />
+          <a class="approve-event btn btn-danger">Approve Event</a>
+        </td>
+      </tr>
+      <tr class="separator">
+        <td colspan="1">
+          <strong>Tags:</strong>
+          <ul class="tag-list unstyled">
+            <% e.keywords.sort { |kw1, kw2| kw1["score"] <=> kw2["score"] }.reverse.each do |kw| %>
+              <li><%= kw["name"] %></li>
+            <% end %>
+          </ul> 
+        </td>
+        <td colspan="3">
+          <strong>Images:</strong>
+          <ul class="image-list unstyled">
+            <% e.image_urls.each do |image| %>
+              <li><%= image_tag image["url"], size: '100x100' %></li>
+            <% end %>
+          </ul> 
+        </td>
+      </tr> 
     <% end %>
   </tbody>
 </table>
