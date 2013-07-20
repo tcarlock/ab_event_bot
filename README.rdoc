@@ -1,1 +1,93 @@
 To preview the JSON representation of an event go to http://ab-event-bot.herokuapp.com/events/[ID]/preview_json.json where ID is, well, the ID.
+
+The JSON format as of this commit is:
+
+{
+    "title": "Winestock San Francisco: Celebrating Passion fo...",
+    "description": "Winestock San Francisco's vision bringing together winemakers, local food artisans, and foodies alike to experience the adventure, enthusiasm and excitement that embody the wine community's spirit! July 20 & 21 12:00pm - 6:00pm Experience and taste 21 premier wineries and 10 local food artisans.",
+    "keywords": [{
+        "score": 43,
+        "name": "wine"
+    }, {
+        "score": 20,
+        "name": "kutch"
+    }, {
+        "score": 18,
+        "name": "winemakers"
+    }, {
+        "score": 17,
+        "name": "artisans"
+    }],
+    "image_urls": [{
+        "caption": null,
+        "url": "http://s1.evcdn.com/images/block250/I0-001/014/269/272-8.jpeg_/winestock-san-francisco-celebrating-passion-wine-f-72.jpeg",
+        "height": 250,
+        "width": 250,
+        "colors": [{
+            "color": [229, 207, 168],
+            "weight": 0.753173828125
+        }, {
+            "color": [175, 40, 81],
+            "weight": 0.246826171875
+        }],
+        "entropy": 5.26542922655,
+        "size": 15736
+    }, {
+        "url": "http://www.7x7.com/sites/all/files/imagemanager/event-button.gif",
+        "width": 300,
+        "size": 3845,
+        "caption": null,
+        "height": 100
+    }, {
+        "url": "http://d1e3evqzwzcve9.cloudfront.net/sites/all/files/sevenbyseven_logo.gif",
+        "width": 254,
+        "size": 2706,
+        "caption": null,
+        "height": 73
+    }, {
+        "caption": null,
+        "url": "http://7x7.com/sites/all/files/imagemanager/sidebar/email-7x7.jpg",
+        "height": 36,
+        "width": 69,
+        "colors": [{
+            "color": [235, 241, 246],
+            "weight": 0.57373046875
+        }, {
+            "color": [13, 13, 13],
+            "weight": 0.020263671875
+        }, {
+            "color": [91, 91, 93],
+            "weight": 0.012451171875
+        }],
+        "entropy": 1.90171124904,
+        "size": 1624
+    }, {
+        "caption": null,
+        "url": "http://7x7.com/sites/all/files/imagemanager/sidebar/got-a-tip.jpg",
+        "height": 36,
+        "width": 41,
+        "colors": [{
+            "color": [236, 239, 245],
+            "weight": 0.315185546875
+        }, {
+            "color": [37, 38, 39],
+            "weight": 0.045166015625
+        }],
+        "entropy": 1.55720625815,
+        "size": 1503
+    }],
+    "start_date": null,
+    "reviewed": null,
+    "approved": null,
+    "created_at": "2013-07-20T22:11:02Z",
+    "updated_at": "2013-07-20T23:28:53Z",
+    "event_source_id": 1,
+    "date_time_string": "Jul 20 - Jul 21, 2013  ",
+    "location": "\n                  FIREHOUSE 8 - San Francisco\n              ",
+    "subtitle": null,
+    "category": null,
+    "event_url": "http://events.7x7.com/sanfrancisco_ca/events/winestock-san-francisco-celebrating-passion-/E0-001-058452989-1",
+    "ticket_url": null,
+    "media_url": null,
+    "price": null
+}
