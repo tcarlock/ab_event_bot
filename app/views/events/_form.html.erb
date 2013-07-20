@@ -1,8 +1,8 @@
-<% if @source.errors.any? %>
+<% if @event.errors.any? %>
   <div id="errorExplanation">
-    <h4><%= pluralize(@source.errors.count, "error") %> prohibited this source from being saved:</h4>
+    <h4><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h4>
     <ul>
-    <% @source.errors.full_messages.each do |msg| %>
+    <% @event.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
     <% end %>
     </ul>
@@ -11,48 +11,50 @@
 <div class="control-group">
   <%= f.label :title, class: "control-label" %>
   <div class="controls">
-    <%= f.text_field :title %>
+    <%= f.text_field :title, :class => 'span6' %>
   </div>
 </div>
 <div class="control-group">
   <%= f.label :subtitle, class: "control-label" %>
   <div class="controls">
-    <%= f.text_field :subtitle %>
+    <%= f.text_field :subtitle, :class => 'span6' %>
   </div>
 </div>
 <div class="control-group">
   <%= f.label :category, class: "control-label" %>
   <div class="controls">
-    <%= f.text_field :category %>
+    <%= f.text_field :category, :class => 'span6' %>
   </div>
 </div>
 <div class="control-group">
   <%= f.label :start_date, class: "control-label" %>
   <div class="controls">
-    <%= f.text_field :start_date %>
+    <%= f.text_field :start_date, :class => 'span6' %>
+    <br />
+    <strong>The scraped date is <%= @event.date_time_string %></strong>
   </div>
 </div>
 <div class="control-group">
   <%= f.label :description, class: "control-label" %>
   <div class="controls">
-    <%= f.text_field :description %>
+    <%= f.text_area :description, rows: 7, :class => 'span6' %>
   </div>
 </div>
 <div class="control-group">
   <%= f.label :event_url, class: "control-label" %>
   <div class="controls">
-    <%= f.text_field :event_url %>
+    <%= f.text_field :event_url, :class => 'span6' %>
   </div>
 </div>
 <div class="control-group">
   <%= f.label :ticket_url, class: "control-label" %>
   <div class="controls">
-    <%= f.text_field :ticket_url %>
+    <%= f.text_field :ticket_url, :class => 'span6' %>
   </div>
 </div>
 <div class="control-group">
   <%= f.label :media_url, class: "control-label" %>
   <div class="controls">
-    <%= f.text_field :media_url %>
+    <%= f.text_field :media_url, :class => 'span6' %>
   </div>
 </div>

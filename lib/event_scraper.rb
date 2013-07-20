@@ -21,9 +21,9 @@ module EventScraper
           event_source_id: source.id,
           title: item.css(source.title_link_selector).first.content,
           location: item.css(source.location_selector).first.content,
-          date_time_string: item.css(source.date_selector).first.content,
+          date_time_string: item.css(source.date_selector).first.content.strip,
           event_url: item.css(source.title_link_selector).first.attributes['href'].value,
-          description: meta_data['description'] || '',
+          description: (meta_data['description'] || '').strip,
           image_urls: meta_data['images'] || [],
           keywords: meta_data['keywords'].select { |tag| tag['score'].to_i > tag_score_threshold }
         )

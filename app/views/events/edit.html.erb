@@ -5,8 +5,8 @@
     <%= render partial: 'events/form', locals: { f: f }  %>
     <div class="form-actions">
       <%= link_to 'Cancel', event_sources_url %>
-      <%= link_to 'Post to AppleButter', :class => 'btn btn-primary' %>
       <%= f.submit 'Save Changes', :class => 'btn btn-primary' %>
+      <%= link_to 'Post to AppleButter', approve_event_url(@event), method: :post, :class => 'btn btn-warning' %>
     </div>
   </fieldset>
 <% end %>

@@ -3,6 +3,7 @@ EventBot::Application.routes.draw do
   resources :events do
     member do
       post :approve
+      get :preview_json
     end
   end
 

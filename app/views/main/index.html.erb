@@ -7,7 +7,6 @@
       <th>Title</th>
       <th>Date</th>
       <th>Location</th>
-      <th>Tags</th>
       <th></th>
     </tr>
   </thead>
@@ -24,10 +23,10 @@
           <%= e.location %>
         </td>
         <td>
-          <a class="preview-event btn btn-primary" href="<%= e.event_url %>">Preview Event</a>
+          <a class="preview-event btn btn-primary" href="<%= e.event_url %>">View Event Page</a>
           <br />
           <br />
-          <a class="approve-event btn btn-danger">Approve Event</a>
+          <%= link_to 'Approve Event', edit_event_url(e), :class => 'btn btn-warning' %>
         </td>
       </tr>
       <tr class="separator">

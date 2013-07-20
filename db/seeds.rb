@@ -5,5 +5,6 @@ EventSource.create(
   event_item_selector: '#event-listing ul.events li',
   title_link_selector: 'h4 a',
   location_selector: 'p.venue',
-  date_selector: 'p.start-time'
+  date_selector: 'p.start-time',
+  last_scraped: Time.now
 )
