@@ -11,13 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130718164314) do
+ActiveRecord::Schema.define(:version => 20130719225120) do
 
   create_table "event_sources", :force => true do |t|
     t.string   "url"
     t.datetime "last_scraped"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.text     "css_mappers"
   end
 
   create_table "events", :force => true do |t|

@@ -1,3 +1,28 @@
+$baseFontSize: 13px;
+
 @import 'bootstrap';
 @import 'bootstrap-responsive';
 @import 'font-awesome';
+
+
+/*.table tbody tr td {
+  border-top: 0;
+}*/
+
+.event-title a {
+  font-weight: bold;
+}
+
+.separator td {
+  border-top: 0;
+  /*border-bottom: 1px solid #dddddd;*/
+}
+
+.tag-list li {
+  display: inline-block;
+  float: left;
+  margin: 2px;
+  padding: 3px 7px;
+  background-color: #0088cc;
+  color: #fff;
+}

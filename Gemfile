@@ -28,6 +28,7 @@ gem 'font-awesome-sass-rails'
 gem 'rabl'
 gem 'nokogiri'
 gem 'embedly'
+gem 'curb'
 
 group :development, :test do
   gem 'rspec-rails'
