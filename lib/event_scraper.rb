@@ -2,11 +2,11 @@
 # require 'json'
 # require 'curb'                              # to poll embed.ly
 
-Dir[File.dirname(__FILE__) + '/event_source_processors/*.rb'].each {|file| require file}
+# Dir[File.dirname(__FILE__) + '/event_source_processors/*.rb'].each {|file| require file}
 
 module EventScraper
   class Event
-    attr_accessor :title, :location, :date, :url, :tags
+    attr_accessor :title, :location, :details, :date, :url, :tags, :images
   end
 
   def self.get_yo_scrape_on sources
@@ -38,7 +38,9 @@ module EventScraper
         # embedly_api = Embedly::API.new :key => 'a93b3ce30d4a4625a92d4881f39d9aff', :user_agent => 'Mozilla/5.0 (compatible; mytestapp/1.0; my@email.com)'
 
         data = EventScraper.api_call(event.url)
-
+        binding.pry
+        event.details = data['description']
+        event.images = data['images']
         event.tags = data['keywords'].select { |tag| tag['score'].to_i > tag_score_threshold }
 
         source_results[:events] << event
