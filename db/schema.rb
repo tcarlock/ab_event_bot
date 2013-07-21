@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130720205750) do
+ActiveRecord::Schema.define(:version => 20130720231310) do
 
   create_table "event_sources", :force => true do |t|
     t.string   "url"
@@ -43,5 +43,7 @@ ActiveRecord::Schema.define(:version => 20130720205750) do
     t.string   "media_url"
     t.string   "price"
   end
+
+  add_index "events", ["event_source_id"], :name => "index_events_on_event_source_id"
 
 end

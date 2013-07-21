@@ -1,6 +1,7 @@
 <%= link_to 'Manage Sources', event_sources_url, :class => 'admin-link' %>
+<%= link_to 'Process Events', process_events_url, method: :post, :class => 'btn btn-danger pull-right' %>
 <h3>Events for <%= @selected_source.title %></h3>
-<%= select_tag :source, options_from_collection_for_select(@sources, 'id', 'url') %>
+<%= select_tag :source, options_from_collection_for_select(@sources, 'id', 'title') %>
 <table class="table table-condensed">
   <thead>
     <tr>
@@ -11,42 +12,46 @@
     </tr>
   </thead>
   <tbody>
-    <% @events.each do |e| %>
-      <tr>
-        <td class="event-title span6">
-          <%= link_to e.title, e.event_url %>
-        </td>
-        <td>
-          <%= e.date_time_string %>
-        </td>
-        <td>
-          <%= e.location %>
-        </td>
-        <td>
-          <a class="preview-event btn btn-primary" href="<%= e.event_url %>">View Event Page</a>
-          <br />
-          <br />
-          <%= link_to 'Approve Event', edit_event_url(e), :class => 'btn btn-warning' %>
-        </td>
-      </tr>
-      <tr class="separator">
-        <td colspan="1">
-          <strong>Tags:</strong>
-          <ul class="tag-list unstyled">
-            <% e.keywords.sort { |kw1, kw2| kw1["score"] <=> kw2["score"] }.reverse.each do |kw| %>
-              <li><%= kw["name"] %></li>
-            <% end %>
-          </ul> 
-        </td>
-        <td colspan="3">
-          <strong>Images:</strong>
-          <ul class="image-list unstyled">
-            <% e.image_urls.each do |image| %>
-              <li><%= image_tag image["url"], size: '100x100' %></li>
-            <% end %>
-          </ul> 
-        </td>
-      </tr> 
+    <% unless @events.length %>
+      <strong>No events found</strong>
+    <% else %>
+      <% @events.each do |e| %>
+        <tr>
+          <td class="event-title span6">
+            <%= link_to e.title, e.event_url %>
+          </td>
+          <td>
+            <%= e.date_time_string %>
+          </td>
+          <td>
+            <%= e.location %>
+          </td>
+          <td>
+            <a class="preview-event btn btn-primary" href="<%= e.event_url %>">View Event Page</a>
+            <br />
+            <br />
+            <%= link_to 'Approve Event', edit_event_url(e), :class => 'btn btn-primary' %>
+          </td>
+        </tr>
+        <tr class="separator">
+          <td colspan="1">
+            <strong>Tags:</strong>
+            <ul class="tag-list unstyled">
+              <% e.keywords.sort { |kw1, kw2| kw1["score"] <=> kw2["score"] }.reverse.each do |kw| %>
+                <li><%= kw["name"] %></li>
+              <% end %>
+            </ul> 
+          </td>
+          <td colspan="3">
+            <strong>Images:</strong>
+            <ul class="image-list unstyled">
+              <% e.image_urls[0..1].each do |image| %>
+                <li><%= image_tag image["url"], size: '100x100' %></li>
+              <% end %>
+            </ul> 
+          </td>
+        </tr> 
+      <% end %>
     <% end %>
   </tbody>
 </table>
