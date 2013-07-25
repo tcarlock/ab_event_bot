@@ -1,5 +1,10 @@
+<% if @event.edited %>
+  <div class="alert alert-warning">
+    This event has been edited.
+  </div>
+<% end %>
 <% if @event.errors.any? %>
-  <div id="errorExplanation">
+  <div class="alert alert-error">
     <h4><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h4>
     <ul>
     <% @event.errors.full_messages.each do |msg| %>
@@ -29,9 +34,9 @@
 <div class="control-group">
   <%= f.label :start_date, class: "control-label" %>
   <div class="controls">
-    <%= f.text_field :start_date, :class => 'span6' %>
+    <%= f.date_select :start_date, :class => 'span6' %>
     <br />
-    <strong>The scraped date is <%= @event.date_time_string %></strong>
+    <span class="text-warning">The scraped date was "<%= @event.date_time_string %>"</span>
   </div>
 </div>
 <div class="control-group">

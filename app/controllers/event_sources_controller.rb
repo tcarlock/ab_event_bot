@@ -2,7 +2,7 @@ class EventSourcesController < ApplicationController
   before_filter :get_source, only: [:edit, :update, :destroy]
 
   def index
-    @sources = EventSource.all
+    @sources = EventSource.active
   end
 
   def new
@@ -13,7 +13,7 @@ class EventSourcesController < ApplicationController
     @source = EventSource.new(params[:event_source])
 
     if @source.save
-      redirect_to @source
+      redirect_to event_sources_url
     else
       render 'new'
     end
@@ -25,8 +25,8 @@ class EventSourcesController < ApplicationController
   end
 
   def destroy
-    @source.destroy
-    redirect_to event_sources_url, notice: 'This source has been removed'
+    @source.update_attributes(disabled: true)
+    redirect_to event_sources_url, notice: 'This source has been disabled'
   end
 
   private 

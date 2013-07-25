@@ -1,5 +1,4 @@
-<%= link_to 'Back to Events', root_url, :class => 'admin-link' %>
-<%= link_to 'Create New Source', new_event_source_url, :class => 'admin-link' %>
+<%= link_to 'Add New Source', new_event_source_url, :class => 'admin-link' %>
 <h3>Sources</h3>
 <table class="table" class="table table-bordered table-striped">
   <thead>
@@ -31,7 +30,7 @@
         <td>
           <a class="hidden scrape-link btn">Scrape Site</a>
           <%= link_to 'Edit', edit_event_source_url(source), :class => 'btn btn-primary' %>
-          <%= link_to 'Remove', source, confirm: 'Are you sure you want to remove this source?', method: :delete, :class => 'btn btn-danger' %>
+          <%= link_to 'Disable', source, confirm: 'Are you sure you want to disable this source?', method: :delete, :class => 'btn btn-danger' %>
         </td>
       </tr>
     <% end %>

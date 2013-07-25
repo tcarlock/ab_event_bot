@@ -6,8 +6,9 @@ class CreateEvents < ActiveRecord::Migration
       t.text :keywords
       t.text :image_urls
       t.datetime :start_date
-      t.boolean :reviewed
-      t.boolean :approved
+      t.boolean :edited, default: false
+      t.boolean :processed, default: false
+      t.boolean :posted, default: false
 
       t.timestamps
     end

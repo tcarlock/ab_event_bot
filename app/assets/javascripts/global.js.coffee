@@ -4,3 +4,6 @@ $(document).ready ->
       $('#page_preview_frame').attr 'src', $(evt.target).attr('href')
     ).modal('show')
     evt.preventDefault()
+
+  $('#source').change ->
+    location.href = "?source=#{$(this).val()}"
