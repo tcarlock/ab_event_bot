@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 ruby '2.0.0'
 
@@ -29,6 +29,8 @@ gem 'rabl'
 gem 'nokogiri'
 gem 'embedly'
 gem 'curb'
+gem 'rubber'
+gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'rspec-rails'
@@ -45,3 +47,4 @@ end
 group :production do
   gem 'unicorn'
 end
+gem 'open4'
