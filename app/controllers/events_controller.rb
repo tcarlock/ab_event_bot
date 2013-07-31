@@ -7,16 +7,33 @@ class EventsController < ApplicationController
 
   def update
     @event.update_attributes(params[:event].merge(edited: true))
-    redirect_to root_url, notice: 'This event has been updated'
-  end
 
-  def approve
-    @event.update_attributes(
-      processed: true,
-      posted: true
-    )
+    unless params[:post_event] == 'false'
+      @event.update_attributes(
+        processed: true,
+        posted: true
+      )
 
-    redirect_to root_url, notice: 'This event has been updated'
+      event_hash = {
+        title: @event[:title],
+        subtitle: @event[:subtitle],
+        description: @event[:description],
+        location: @event[:location],
+        start_time: @event[:start_date],
+        price: @event[:price],
+        image_link: @event[:image_url],
+        ticket_link: @event[:ticket_url],
+        link: @event[:event_url],
+        category: @event[:category],
+        keywords: @event[:keywords].to_json
+      }
+
+      Curl.post('http://applebutter.me/event-bot-posting/', event_hash)
+
+      redirect_to root_url, notice: 'This event has been posted to AppleButter'
+    else
+      redirect_to root_url, notice: 'This event has been updated'
+    end
   end
 
   def reject
@@ -25,7 +42,7 @@ class EventsController < ApplicationController
       posted: false
     )
 
-    redirect_to root_url, notice: 'This event has been updated'
+    redirect_to root_url, notice: 'This event has been rejected'
   end
 
   def preview_json

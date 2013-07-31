@@ -29,7 +29,6 @@ gem 'rabl'
 gem 'nokogiri'
 gem 'embedly'
 gem 'curb'
-gem 'rubber'
 gem 'newrelic_rpm'
 
 group :development, :test do

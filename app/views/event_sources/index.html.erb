@@ -1,4 +1,6 @@
-<%= link_to 'Add New Source', new_event_source_url, :class => 'admin-link' %>
+<% content_for :nav do %>
+  <%= link_to 'Add New Source', new_event_source_url, :class => 'admin-link' %>
+<% end %>
 <h3>Sources</h3>
 <table class="table" class="table table-bordered table-striped">
   <thead>

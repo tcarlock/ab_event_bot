@@ -1,8 +1,11 @@
-<%= link_to 'Manage Sources', event_sources_url, :class => 'admin-link' %>
-<%= link_to 'Process Events', process_events_url, :class => 'btn btn-success pull-right' %>
+<% content_for :nav do %>
+  <%= link_to 'Manage Sources', event_sources_url, :class => 'admin-link' %>
+<% end %>
 <% if @sources.length > 0 %>
-  <h3>Events for "<%= @selected_source.title %>"</h3>
-  <%= select_tag :source, options_from_collection_for_select(@sources, 'id', 'title', selected: @selected_source.id) %>
+  <h3>
+    Events for <%= @selected_source.title %> <small><%= pluralize(@events.count, "event") %> found // Last scraped <%= @selected_source.last_scraped.strftime("%m/%d/%Y at %l:%M %p") %></small>
+    <%= select_tag :source, options_from_collection_for_select(@sources, 'id', 'title', selected: @selected_source.id), :class => 'pull-right' %>
+  </h3>
   <div id="events_outer">
     <% if @events.length == 0 %>
       <strong>No scraped events for "<%= @selected_source.title %>"</strong>
@@ -29,9 +32,9 @@
                 <%= e.location %>
               </td>
               <td style="text-align:center;">
-                <a class="preview-event btn btn-primary" href="<%= e.event_url %>">View Event Page</a>
+                <a class="preview-event" href="<%= e.event_url %>">View Event Page</a>
                 <%= link_to 'Edit Event', edit_event_url(e), :class => 'btn btn-primary' %>
-                <%= link_to 'Reject this Event', reject_event_url(e), method: :post, :class => 'btn btn-danger' %>
+                <%= link_to 'Reject Event', reject_event_url(e), method: :post, :class => 'btn btn-danger' %>
               </td>
             </tr>
             <tr class="separator">

@@ -1,4 +1,6 @@
-<%= link_to 'Back to Events', root_url, :class => 'admin-link' %>
+<% content_for :nav do %>
+  <%= link_to 'Back to Events', root_url, :class => 'admin-link' %>
+<% end %>
 <%= form_for @event, html: { :class => 'form-horizontal' } do |f| %>
   <fieldset>
     <legend>Create a New Event</legend>

@@ -7,3 +7,8 @@ $(document).ready ->
 
   $('#source').change ->
     location.href = "?source=#{$(this).val()}"
+
+  $('#post_event').click ->
+    alert 'test'
+    $('#post_event').val('true')
+    console.log $('#post_event').val()

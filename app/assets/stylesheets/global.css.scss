@@ -9,12 +9,32 @@ a:hover {
   text-decoration: none;
 }
 
-#body_container {
-  margin-top: 30px;
+#nav_container {
+  margin-bottom: 10px;
+
+  i.icon-home {
+    margin-right: 10px;
+  }
+
+  a {
+    vertical-align: middle;
+    display: inline-block;
+  }
 }
 
-.container {
-  padding-top: 20px;
+#body_container {
+  margin-top: 20px;
+
+  .well h3 {
+    margin-top: 0px;
+    margin-bottom: 20px;
+  }
+}
+
+.form-actions {
+  a, .btn {
+    margin: 0 3px;
+  }
 }
 
 .admin-link {

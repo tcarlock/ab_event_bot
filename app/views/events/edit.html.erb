@@ -1,9 +1,12 @@
+<% content_for :nav do %>
+  <%= link_to 'Back to Events', root_url, :class => 'admin-link' %>
+<% end %>
 <% if @event.processed %>
   <div class="alert alert-error">
     This event has been processed and cannot be edited.
   </div>
 <% else %>
-  <%= link_to 'Reject this Event', reject_event_url(@event), confirm: 'Are you sure you want to reject this event?', method: :post, :class => 'btn btn-danger pull-right' %>
+  <%= link_to 'Reject Event', reject_event_url(@event), method: :post, :class => 'btn btn-danger pull-right' %>
   <%= form_for @event, html: { :class => 'form-horizontal' } do |f| %>
     <fieldset>
       <legend>Edit This Event (Scraped <%= @event.created_at.strftime("%m/%d/%Y") %> from &quot;<%= @event.event_source.title %>&quot;)</legend>
@@ -11,7 +14,7 @@
       <div class="form-actions">
         <%= link_to 'Cancel', event_sources_url %>
         <%= f.submit 'Save Changes', :class => 'btn btn-primary' %>
-        <%= link_to 'Post to AppleButter', approve_event_url(@event), method: :post, :class => 'btn btn-warning' %>
+        <%= f.submit 'Save & Post to AppleButter', :class => 'btn btn-warning', name: 'post_event' %>
       </div>
     </fieldset>
   <% end %>
