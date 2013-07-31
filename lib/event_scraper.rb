@@ -2,9 +2,6 @@ require 'nokogiri'
 require 'open-uri'
 
 module EventScraper
-  # extend ActionView::Helpers::SanitizeHelper
-  # include ActionView::Helpers::SanitizeHelper::ClassMethods
-
   def self.get_yo_scrape_on sources
     results = []
 
@@ -41,13 +38,14 @@ module EventScraper
             )
           end
         end
-      end
 
-      source.update_attributes(last_scraped: Time.now)
+        source.update_attributes(last_scraped: Time.now)
+      end
 
       results
     rescue => e
       Rails.logger.warn "Aw shit, son. There was an error: #{e}"
+      Rails.logger.warn e.backtrace
     end
   end
 
