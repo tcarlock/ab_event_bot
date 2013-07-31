@@ -3,7 +3,7 @@
 <% end %>
 <% if @sources.length > 0 %>
   <h3>
-    Events for <%= @selected_source.title %> <small><%= pluralize(@events.count, "event") %> found // Last scraped <%= @selected_source.last_scraped.strftime("%m/%d/%Y at %l:%M %p") %></small>
+    Events for <%= @selected_source.title %> <small><%= pluralize(@events.count, "event") %> found // Last scraped <%= @selected_source.last_scraped.strftime("%B %d, %Y at %l:%M %p") %></small>
     <%= select_tag :source, options_from_collection_for_select(@sources, 'id', 'title', selected: @selected_source.id), :class => 'pull-right' %>
   </h3>
   <div id="events_outer">
