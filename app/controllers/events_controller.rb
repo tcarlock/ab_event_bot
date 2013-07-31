@@ -26,7 +26,7 @@ class EventsController < ApplicationController
         link: @event.event_url,
         category: @event.category,
         keywords: @event.keywords[0..4].sort { |k1, k2| k1['score'] <=> k2['score'] }.reverse.map { |k| k['name'] }.join(', ')
-        image_urls: @event.image_urls.map { |i| i['url'] }
+        image_urls: @event.image_urls.map { |i| i['url'] }.join(', ')
       }
 
       Curl.post('http://applebutter.me/event-bot-posting/', event_hash)
