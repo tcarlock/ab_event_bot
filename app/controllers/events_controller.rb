@@ -15,17 +15,18 @@ class EventsController < ApplicationController
       )
 
       event_hash = {
-        title: @event[:title],
-        subtitle: @event[:subtitle],
-        description: @event[:description],
-        location: @event[:location],
-        start_time: @event[:start_date],
-        price: @event[:price],
-        image_link: @event[:image_url],
-        ticket_link: @event[:ticket_url],
-        link: @event[:event_url],
-        category: @event[:category],
-        keywords: @event[:keywords].to_json
+        title: @event.title,
+        subtitle: @event.subtitle,
+        description: @event.description,
+        location: @event.location,
+        start_time: @event.start_date,
+        price: @event.price,
+        image_link: @event.image_url,
+        ticket_link: @event.ticket_url,
+        link: @event.event_url,
+        category: @event.category,
+        keywords: @event.keywords[0..4].sort { |k1, k2| k1['score'] <=> k2['score'] }.reverse.map { |k| k['name'] }.join(', ')
+        image_urls: @event.image_urls.map { |i| i['url'] }
       }
 
       Curl.post('http://applebutter.me/event-bot-posting/', event_hash)
