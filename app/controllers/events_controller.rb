@@ -21,7 +21,7 @@ class EventsController < ApplicationController
         location: @event.location,
         start_time: @event.start_date,
         price: @event.price,
-        image_link: @event.image_url,
+        image_link: @event.media_url,
         ticket_link: @event.ticket_url,
         link: @event.event_url,
         category: @event.category,
