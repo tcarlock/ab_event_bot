@@ -8,5 +8,6 @@ EventBot::Application.routes.draw do
     end
   end
 
+  get :process_events, to: 'main#process_events'
   root to: 'main#index'
 end

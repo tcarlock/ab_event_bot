@@ -46,6 +46,12 @@
   </div>
 </div>
 <div class="control-group">
+  <%= f.label :price, class: "control-label" %>
+  <div class="controls">
+    <%= f.text_field :price, :class => 'span6' %>
+  </div>
+</div>
+<div class="control-group">
   <%= f.label :event_url, class: "control-label" %>
   <div class="controls">
     <%= f.text_field :event_url, :class => 'span6' %>
@@ -58,7 +64,7 @@
   </div>
 </div>
 <div class="control-group">
-  <%= f.label :media_url, class: "control-label" %>
+  <%= f.label :media_url, "Image Url", class: "control-label" %>
   <div class="controls">
     <%= f.text_field :media_url, :class => 'span6' %>
   </div>

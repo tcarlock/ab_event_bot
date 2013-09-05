@@ -1,5 +1,6 @@
 <% content_for :nav do %>
   <%= link_to 'Manage Sources', event_sources_url, :class => 'admin-link' %>
+
 <% end %>
 <% if @sources.length > 0 %>
   <h3>
@@ -23,7 +24,7 @@
           <% @events.each do |e| %>
             <tr>
               <td class="event-title span6">
-                <%= link_to e.title, e.event_url %>
+                <a class="preview-event" href="<%= e.event_url %>"><%= e.title %></a>
               </td>
               <td>
                 <%= e.date_time_string %>
@@ -31,9 +32,8 @@
               <td>
                 <%= e.location %>
               </td>
-              <td style="text-align:center;">
-                <a class="preview-event" href="<%= e.event_url %>">View Event Page</a>
-                <%= link_to 'Edit Event', edit_event_url(e), :class => 'btn btn-primary' %>
+              <td style="text-align:right;">
+                <%= link_to 'Edit/Post Event', edit_event_url(e), :class => 'btn btn-primary' %>
                 <%= link_to 'Reject Event', reject_event_url(e), method: :post, :class => 'btn btn-danger' %>
               </td>
             </tr>
@@ -45,7 +45,7 @@
                     <% e.keywords.sort { |kw1, kw2| kw1["score"] <=> kw2["score"] }.reverse.each do |kw| %>
                       <li><%= kw["name"] %></li>
                     <% end %>
-                  </ul> 
+                  </ul>
                 <% else %>
                   <span>No relevant keywords found</span>
                 <% end %>
@@ -56,9 +56,9 @@
                   <% e.image_urls[0..1].each do |image| %>
                     <li><%= image_tag image["url"], size: '100x100' %></li>
                   <% end %>
-                </ul> 
+                </ul>
               </td>
-            </tr> 
+            </tr>
           <% end %>
         </tbody>
       </table>

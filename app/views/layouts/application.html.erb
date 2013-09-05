@@ -13,6 +13,7 @@
         <i class="icon-home icon-2x"></i>
       <% end %>
       <%= yield :nav %>
+      <%= link_to 'Scrape Events', process_events_url, :class => 'btn btn-warning pull-right', confirm: 'This could take several minutes and may time out. Do you wish to proceed?' %>
     </div>
     <!-- <div class="alert alert-error">
       <button type="button" class="close" data-dismiss="alert">&times;</button>
