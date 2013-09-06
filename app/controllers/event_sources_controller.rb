@@ -2,7 +2,7 @@ class EventSourcesController < ApplicationController
   before_filter :get_source, only: [:edit, :update, :destroy]
 
   def index
-    @sources = EventSource.active
+    @sources = EventSource.active.order(:title)
   end
 
   def new
@@ -29,7 +29,7 @@ class EventSourcesController < ApplicationController
     redirect_to event_sources_url, notice: 'This source has been disabled'
   end
 
-  private 
+  private
 
   def get_source
     @source = EventSource.find(params[:id])
