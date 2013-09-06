@@ -5,8 +5,8 @@ module EventScraper
   def self.get_yo_scrape_on sources
     results = []
 
-    begin
-      sources.each do |source|
+    sources.each do |source|
+      begin
         Rails.logger.info "Scraping #{source.url}..."
 
         Nokogiri::HTML(open(source.url)).css(source.event_item_selector).each do |item|
@@ -42,14 +42,14 @@ module EventScraper
         end
 
         source.update_attributes(last_scraped: Time.now)
+      rescue => e
+        Rails.logger.warn "Aw shit, son. There was an error: #{e}"
+        Rails.logger.warn e.backtrace
+        next
       end
-
-      results
-    rescue => e
-      Rails.logger.warn "Aw shit, son. There was an error: #{e}"
-      Rails.logger.warn e.backtrace
-      next
     end
+
+    results
   end
 
   def self.embedly_api_call url
