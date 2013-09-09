@@ -2,14 +2,14 @@ class EventSource < ActiveRecord::Base
   before_create :set_scrape_date
   before_validation :add_url_protocol
 
-  attr_accessible :title, :region, :url, :last_scraped, :event_item_selector, :event_link_selector, :title_link_selector, :title_selector, :description_selector, :location_selector, :date_selector, :ticket_url_selector, :disabled
-  store :css_mappers, accessors: [:event_item_selector, :event_link_selector, :title_link_selector, :title_selector, :description_selector, :location_selector, :date_selector, :ticket_url_selector]
+  attr_accessible :title, :region, :url, :last_scraped, :event_link_selector, :title_selector, :description_selector, :location_selector, :date_selector, :ticket_url_selector, :disabled
+  store :css_mappers, accessors: [:event_link_selector, :title_selector, :description_selector, :location_selector, :date_selector, :ticket_url_selector]
 
   validates :title, presence: :true
   validates :region, presence: :true
   validates :url, presence: :true
-  validates :event_item_selector, presence: :true
-  validates :title_link_selector, presence: :true
+  validates :event_link_selector, presence: :true
+  validates :title_selector, presence: :true
   validates :location_selector, presence: :true
   validates :date_selector, presence: :true
 
