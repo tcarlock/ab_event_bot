@@ -7,7 +7,7 @@ $(document).ready ->
     evt.preventDefault()
 
   $('#source').change ->
-    location.href = "?source=#{$(this).val()}"
+    location.href = "/event_sources/#{$(this).val()}"
 
   $('#post_event').click ->
     alert 'test'

@@ -15,6 +15,8 @@ class EventsController < ApplicationController
       )
 
       event_hash = {
+        event_source_id: @event.event_source_id,
+        venue_id: @event.venue_id,
         title: @event.title,
         subtitle: @event.subtitle,
         description: @event.description,

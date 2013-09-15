@@ -6,7 +6,7 @@
     <legend>Create a New Event</legend>
     <%= render partial: 'events/form', locals: { f: f }  %>
     <div class="form-actions">
-      <%= link_to 'Cancel', event_sources_url %>
+      <%= link_to 'Cancel', root_url %>
       <%= f.submit 'Save Changes', :class => 'btn btn-primary' %>
     </div>
   </fieldset>

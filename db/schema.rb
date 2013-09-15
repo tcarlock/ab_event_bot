@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130909073335) do
+ActiveRecord::Schema.define(:version => 20130915223654) do
 
   create_table "event_sources", :force => true do |t|
     t.string   "url"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(:version => 20130909073335) do
     t.string   "title"
     t.string   "region"
     t.boolean  "disabled",     :default => false
+    t.text     "url_params"
+    t.integer  "venue_id"
   end
 
   add_index "event_sources", ["disabled"], :name => "index_event_sources_on_disabled"
@@ -46,6 +48,7 @@ ActiveRecord::Schema.define(:version => 20130909073335) do
     t.string   "ticket_url"
     t.string   "media_url"
     t.string   "price"
+    t.integer  "venue_id"
   end
 
   add_index "events", ["event_source_id", "processed"], :name => "index_events_on_event_source_id_and_processed"

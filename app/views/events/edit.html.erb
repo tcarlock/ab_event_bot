@@ -12,7 +12,7 @@
       <legend>Edit This Event <small>Scraped <%= @event.created_at.strftime("%B %d, %Y at %l:%M %p") %> from &quot;<%= @event.event_source.title %>&quot;</small></legend>
       <%= render partial: 'events/form', locals: { f: f }  %>
       <div class="form-actions">
-        <%= link_to 'Cancel', event_sources_url %>
+        <%= link_to 'Cancel', root_url %>
         <%= f.submit 'Save Changes', :class => 'btn btn-primary' %>
         <%= f.submit 'Save & Post to AppleButter', :class => 'btn btn-warning', name: 'post_event' %>
       </div>

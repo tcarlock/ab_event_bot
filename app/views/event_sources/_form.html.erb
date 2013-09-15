@@ -21,11 +21,28 @@
   </div>
 </div>
 <div class="control-group">
+  <%= f.label :venue_id, class: "control-label" %>
+  <div class="controls">
+    <%= f.text_field :venue_id, :class => 'span6' %>
+    <span class="help-block">Add a venue's ID from AppleButter to associate events with a specific venue.</span>
+  </div>
+</div>
+<hr />
+<div class="control-group">
   <%= f.label :url, class: "control-label" %>
   <div class="controls">
     <%= f.text_field :url, :class => 'span6' %>
   </div>
 </div>
+<% @source.url_params.each do |key, value| %>
+  <div class="control-group">
+    <%= label_tag key, "Value for #{key}", class: "control-label" %>
+    <div class="controls">
+      <%= text_field_tag key, value, class: 'span6', name: "url_params[#{key}]" %>
+    </div>
+  </div>
+<% end %>
+<hr />
 <div class="control-group">
   <%= f.label :event_link_selector, class: "control-label" %>
   <div class="controls">
@@ -54,6 +71,13 @@
   <%= f.label :date_selector, class: "control-label" %>
   <div class="controls">
     <%= f.text_field :date_selector, :class => 'span6' %>
+  </div>
+</div>
+<div class="control-group">
+  <%= f.label :time_selector, class: "control-label" %>
+  <div class="controls">
+    <%= f.text_field :time_selector, :class => 'span6' %>
+    <span class="help-block">Use this if event date and time are displayed in different tags.</span>
   </div>
 </div>
 <div class="control-group">

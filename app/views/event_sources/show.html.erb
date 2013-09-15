@@ -1,0 +1,82 @@
+<% content_for :nav do %>
+  <%= link_to 'Manage Sources', root_url, :class => 'admin-link' %>
+<% end %>
+<% if @source_options.length > 0 %>
+  <h3>
+    Events for <%= @selected_source.title %> <small><%= pluralize(@events.count, "event") %> found // Last scraped <%= @selected_source.last_scraped.strftime("%B %d, %Y at %l:%M %p") %></small>
+    <%= select_tag :source, options_from_collection_for_select(@source_options, :first, :last, selected: @selected_source.id), :class => 'pull-right' %>
+  </h3>
+  <div id="events_outer">
+    <% if @events.length == 0 %>
+      <strong>No scraped events for "<%= @selected_source.title %>"</strong>
+    <% else %>
+      <table class="table table-condensed">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Date</th>
+            <th>Location</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @events.each do |e| %>
+            <tr>
+              <td class="event-title span6">
+                <a class="preview-event" href="<%= e.event_url %>"><%= e.title %></a>
+              </td>
+              <td>
+                <%= e.date_time_string %>
+              </td>
+              <td>
+                <%= e.location %>
+              </td>
+              <td style="text-align:right;">
+                <%= link_to 'Edit/Post Event', edit_event_url(e), :class => 'btn btn-primary' %>
+                <%= link_to 'Reject Event', reject_event_url(e), method: :post, :class => 'btn btn-danger' %>
+              </td>
+            </tr>
+            <tr class="separator">
+              <td colspan="1">
+                <strong>Tags:</strong>
+                <% if e.keywords.length > 0 %>
+                  <ul class="tag-list unstyled">
+                    <% e.keywords.sort { |kw1, kw2| kw1["score"] <=> kw2["score"] }.reverse.each do |kw| %>
+                      <li><%= kw["name"] %></li>
+                    <% end %>
+                  </ul>
+                <% else %>
+                  <span>No relevant keywords found</span>
+                <% end %>
+              </td>
+              <td colspan="3">
+                <strong>Images:</strong>
+                <ul class="image-list unstyled">
+                  <% e.image_urls[0..1].each do |image| %>
+                    <li><%= image_tag image["url"], size: '100x100' %></li>
+                  <% end %>
+                </ul>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
+  <div id="page_preview_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="myModalLabel">Event Preview</h3>
+    </div>
+    <div class="modal-body">
+      <iframe id="page_preview_frame" width="840" height="600"></iframe>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    </div>
+  </div>
+<% else %>
+  <div class="container">
+    <strong>You haven't set up any sources. <%= link_to 'Add New Source', new_event_source_url %></strong>
+  </div>
+<% end %>
