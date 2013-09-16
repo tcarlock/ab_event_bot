@@ -6,7 +6,6 @@
   <thead>
     <tr>
       <th>Title</th>
-      <th>URL</th>
       <th>Region</th>
       <th class="center">Active Events</th>
       <th>Last Scraped</th>
@@ -16,24 +15,21 @@
   <tbody>
     <% @sources.each do |source| %>
       <tr>
-        <td>
+        <td class="span3">
           <strong>
             <%= link_to source.title, event_source_path(source) %>
           </strong>
         </td>
-        <td>
-          <%= source.url %>
-        </td>
-        <td>
+        <td class="span2">
           <%= source.region %>
         </td>
-        <td class="center">
+        <td class="center span2">
           <%= source.events.unprocessed.count %>
         </td>
-        <td>
+        <td class="span3">
           <%= source.last_scraped.strftime("%m/%d/%Y at %l:%M %p") %>
         </td>
-        <td>
+        <td class="span2">
           <a class="hidden scrape-link btn">Scrape Site</a>
           <%= link_to 'Edit', edit_event_source_url(source), :class => 'btn btn-primary' %>
           <%= link_to 'Disable', source, confirm: 'Are you sure you want to disable this source?', method: :delete, :class => 'btn btn-danger' %>
