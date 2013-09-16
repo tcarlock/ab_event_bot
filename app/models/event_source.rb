@@ -7,8 +7,8 @@ class EventSource < ActiveRecord::Base
     PAGE_NUMBER: 5
   }
 
-  attr_accessible :venue_id, :title, :region, :url, :url_params, :last_scraped, :event_link_selector, :title_selector, :description_selector, :location_selector, :date_selector, :time_selector, :ticket_url_selector, :disabled
-  store :css_mappers, accessors: [:event_link_selector, :title_selector, :description_selector, :location_selector, :date_selector, :time_selector, :ticket_url_selector]
+  attr_accessible :venue_id, :title, :region, :url, :url_params, :last_scraped, :event_link_selector, :title_selector, :description_selector, :location_selector, :date_selector, :time_selector, :ticket_url_selector, :disabled, :event_item_selector, :title_link_selector
+  store :css_mappers, accessors: [:event_link_selector, :title_selector, :description_selector, :location_selector, :date_selector, :time_selector, :ticket_url_selector, :event_item_selector, :title_link_selector]
   serialize :url_params, HashWithIndifferentAccess
 
   validates :title, presence: :true
