@@ -1,5 +1,5 @@
 <% content_for :nav do %>
-  <%= link_to 'Back to Events', root_url, :class => 'admin-link' %>
+  <%= link_to 'Back to Events', event_source_url(@event.event_source_id), :class => 'admin-link' %>
 <% end %>
 <% if @event.processed %>
   <div class="alert alert-error">

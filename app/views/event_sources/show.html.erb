@@ -1,6 +1,3 @@
-<% content_for :nav do %>
-  <%= link_to 'Manage Sources', root_url, :class => 'admin-link' %>
-<% end %>
 <% if @source_options.length > 0 %>
   <h3>
     Events for <%= @selected_source.title %> <small><%= pluralize(@events.count, "event") %> found // Last scraped <%= @selected_source.last_scraped.strftime("%B %d, %Y at %l:%M %p") %></small>

@@ -1,7 +1,7 @@
 <% content_for :nav do %>
   <%= link_to 'Add New Source', new_event_source_url, :class => 'admin-link' %>
 <% end %>
-<h3>Sources</h3>
+<h3>Event Sources</h3>
 <table class="table" class="table table-bordered table-striped">
   <thead>
     <tr>
@@ -17,7 +17,9 @@
     <% @sources.each do |source| %>
       <tr>
         <td>
-          <%= link_to source.title, event_source_path(source) %>
+          <strong>
+            <%= link_to source.title, event_source_path(source) %>
+          </strong>
         </td>
         <td>
           <%= source.url %>
