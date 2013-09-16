@@ -31,7 +31,6 @@ class EventSourcesController < ApplicationController
   def update
     @source.update_attributes(params[:event_source])
     @source.update_attributes(url_params: @source.url_params.merge(params[:url_params]))
-    binding.pry
 
     redirect_to root_url, notice: 'This source has been updated'
   end
