@@ -15,9 +15,9 @@ class EventSource < ActiveRecord::Base
   validates :region, presence: :true
   validates :url, presence: :true
   validates :event_link_selector, presence: :true
-  validates :title_selector, presence: :true
-  validates :location_selector, presence: :true
-  validates :date_selector, presence: :true
+  # validates :title_selector, presence: :true
+  # validates :location_selector, presence: :true
+  # validates :date_selector, presence: :true
 
   has_many :events
 
