@@ -1,6 +1,6 @@
 class EventSource < ActiveRecord::Base
   before_create :set_scrape_date
-  after_initialize :set_url_param_defaults
+  # after_initialize :set_url_param_defaults
   before_validation :add_url_protocol
 
   URL_PARAMS = {
@@ -35,9 +35,9 @@ class EventSource < ActiveRecord::Base
     end
   end
 
-  def set_url_param_defaults
-    URL_PARAMS.each do |key, value|
-      self.url_params[key] = value if self.url_params[key].nil?
-    end
-  end
+  # def set_url_param_defaults
+  #   URL_PARAMS.each do |key, value|
+  #     self.url_params[key] = value if self.url_params[key].nil?
+  #   end
+  # end
 end
