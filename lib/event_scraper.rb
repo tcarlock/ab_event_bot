@@ -81,7 +81,7 @@ module EventScraper
   end
 
   def self.process_tag(dom, selector)
-    if selector.strip.blank?
+    if selector.nil? or selector.strip.blank?
       ''
     else
       element = dom.css(selector.strip).first
