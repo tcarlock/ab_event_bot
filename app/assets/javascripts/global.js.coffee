@@ -9,7 +9,14 @@ $(document).ready ->
   $('#source').change ->
     location.href = "/event_sources/#{$(this).val()}"
 
+  $('#category').change ->
+    if $(this).val() is ''
+      location.href = "/"
+    else
+      location.href = "?category=#{$(this).val()}"
+
+  $('#region').change ->
+    location.href = "?region=#{$(this).val()}"
+
   $('#post_event').click ->
-    alert 'test'
     $('#post_event').val('true')
-    console.log $('#post_event').val()

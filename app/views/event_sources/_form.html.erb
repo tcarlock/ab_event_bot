@@ -17,7 +17,7 @@
 <div class="control-group">
   <%= f.label :region, class: "control-label" %>
   <div class="controls">
-    <%= f.text_field :region, :class => 'span6' %>
+    <%= f.select :region, options_from_collection_for_select(@regions, :first, :last), :class => 'span6' %>
   </div>
 </div>
 <div class="control-group">

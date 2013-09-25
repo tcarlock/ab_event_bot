@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130916194809) do
+ActiveRecord::Schema.define(:version => 20130925065339) do
 
   create_table "event_sources", :force => true do |t|
     t.string   "url"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(:version => 20130916194809) do
     t.boolean  "disabled",     :default => false
     t.text     "url_params"
     t.integer  "venue_id"
+    t.string   "category"
   end
 
   add_index "event_sources", ["disabled"], :name => "index_event_sources_on_disabled"

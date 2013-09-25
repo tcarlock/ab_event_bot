@@ -35,6 +35,22 @@ label {
   .well h3 {
     margin-top: 0px;
     margin-bottom: 20px;
+    display: inline-block;
+  }
+}
+
+.btn-toolbar.filters {
+  margin-top: 5px;
+
+  h4 {
+    display: inline-block;
+    vertical-align: middle;
+    margin: -12px 0 0 20px;
+
+    &:after {
+      margin-right: 7px;
+      content: ':';
+    }
   }
 }
 

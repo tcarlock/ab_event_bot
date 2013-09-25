@@ -1,40 +1,55 @@
 <% content_for :nav do %>
   <%= link_to 'Add New Source', new_event_source_url, :class => 'admin-link' %>
 <% end %>
-<h3>Event Sources</h3>
-<table class="table" class="table table-bordered table-striped">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Region</th>
-      <th class="center">Active Events</th>
-      <th>Last Scraped</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @sources.each do |source| %>
+<section>
+  <h3>Event Sources</h3>
+  <div class="pull-right btn-toolbar filters">
+    <h4>Filter by Category</h4>
+    <%= select_tag :category, options_from_collection_for_select(@categories, :first, :last, selected: @selected_category[0]), include_blank: true %>
+    <% select_tag :region, options_from_collection_for_select(@regions, :first, :last, selected: @selected_region[0]) %>
+  </div>
+</section>
+<% if @sources.length == 0 %>
+  <strong>No sources found</strong>
+<% else %>
+  <table class="table" class="table table-bordered table-striped">
+    <thead>
       <tr>
-        <td class="span3">
-          <strong>
-            <%= link_to source.title, event_source_path(source) %>
-          </strong>
-        </td>
-        <td class="span2">
-          <%= source.region %>
-        </td>
-        <td class="center span2">
-          <%= source.events.unprocessed.count %>
-        </td>
-        <td class="span3">
-          <%= source.last_scraped.strftime("%m/%d/%Y at %l:%M %p") %>
-        </td>
-        <td class="span2">
-          <a class="hidden scrape-link btn">Scrape Site</a>
-          <%= link_to 'Edit', edit_event_source_url(source), :class => 'btn btn-primary' %>
-          <%= link_to 'Disable', source, confirm: 'Are you sure you want to disable this source?', method: :delete, :class => 'btn btn-danger' %>
-        </td>
+        <th>Title</th>
+        <th>Region</th>
+        <th>Category</th>
+        <th class="center">Active Events</th>
+        <th>Last Scraped</th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @sources.each do |source| %>
+        <tr>
+          <td class="span3">
+            <strong>
+              <%= link_to source.title, event_source_path(source) %>
+            </strong>
+          </td>
+          <td class="span2">
+            <%= EventSource::REGIONS[source.region] %>
+          </td>
+          <td class="span2">
+            <%= EventSource::CATEGORIES[source.category] %>
+          </td>
+          <td class="center span2">
+            <%= source.events.unprocessed.count %>
+          </td>
+          <td class="span3">
+            <%= source.last_scraped.strftime("%m/%d/%Y at %l:%M %p") %>
+          </td>
+          <td class="span2">
+            <a class="hidden scrape-link btn">Scrape Site</a>
+            <%= link_to 'Edit', edit_event_source_url(source), :class => 'btn btn-primary' %>
+            <%= link_to 'Disable', source, confirm: 'Are you sure you want to disable this source?', method: :delete, :class => 'btn btn-danger' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

@@ -3,11 +3,28 @@ class EventSource < ActiveRecord::Base
   after_initialize :set_url_param_defaults
   before_validation :add_url_protocol
 
-  URL_PARAMS = {
+  URL_PARAM_DEFAULTS = {
     PAGE_NUMBER: 5
   }
 
-  attr_accessible :venue_id, :title, :region, :url, :url_params, :last_scraped, :event_link_selector, :title_selector, :description_selector, :location_selector, :date_selector, :time_selector, :ticket_url_selector, :disabled
+  CATEGORIES = {
+    'Active' => 'Active',
+    'Arts' => 'Arts',
+    'Community' => 'Community',
+    'Food' => 'Food',
+    'Film' => 'Film',
+    'Learning' => 'Learning',
+    'Music' => 'Music',
+    'Performances' => 'Performances',
+    'Professional' => 'Professional',
+    'General' => 'General'
+  }
+
+  REGIONS = {
+    'SanFranciscoCa' => 'San Francisco, CA'
+  }
+
+  attr_accessible :venue_id, :title, :region, :category, :url, :url_params, :last_scraped, :event_link_selector, :title_selector, :description_selector, :location_selector, :date_selector, :time_selector, :ticket_url_selector, :disabled
   store :css_mappers, accessors: [:event_link_selector, :title_selector, :description_selector, :location_selector, :date_selector, :time_selector, :ticket_url_selector]
   serialize :url_params, HashWithIndifferentAccess
 
@@ -36,7 +53,7 @@ class EventSource < ActiveRecord::Base
   end
 
   def set_url_param_defaults
-    URL_PARAMS.each do |key, value|
+    URL_PARAM_DEFAULTS.each do |key, value|
       self.url_params[key] = value if self.url_params[key].nil?
     end
   end

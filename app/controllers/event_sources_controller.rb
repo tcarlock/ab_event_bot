@@ -16,6 +16,7 @@ class EventSourcesController < ApplicationController
 
   def new
     @source = EventSource.new
+    @regions = EventSource::REGIONS.map { |k,v| [k.to_s.camelize, v] }
   end
 
   def create
@@ -26,6 +27,10 @@ class EventSourcesController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  def edit
+    @regions = EventSource::REGIONS.map { |k,v| [k.to_s.camelize, v] }
   end
 
   def update

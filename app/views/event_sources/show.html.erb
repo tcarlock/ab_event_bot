@@ -1,8 +1,10 @@
 <% if @source_options.length > 0 %>
   <h3>
     Events for <%= @selected_source.title %> <small><%= pluralize(@events.count, "event") %> found // Last scraped <%= @selected_source.last_scraped.strftime("%B %d, %Y at %l:%M %p") %></small>
-    <%= select_tag :source, options_from_collection_for_select(@source_options, :first, :last, selected: @selected_source.id), :class => 'pull-right' %>
   </h3>
+  <div class="pull-right btn-toolbar filters">
+    <%= select_tag :source, options_from_collection_for_select(@source_options, :first, :last, selected: @selected_source.id), :class => 'pull-right' %>
+  </div>
   <div id="events_outer">
     <% if @events.length == 0 %>
       <strong>No scraped events for "<%= @selected_source.title %>"</strong>

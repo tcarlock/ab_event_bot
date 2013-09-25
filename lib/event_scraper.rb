@@ -95,7 +95,7 @@ module EventScraper
   end
 
   def self.embedly_api_call(url)
-    api_url = "http://api.embed.ly/1/extract?key=a93b3ce30d4a4625a92d4881f39d9aff&url=#{url}"
+    api_url = "http://api.embed.ly/1/extract?key=#{EMBEDLY_KEYS[1]}&url=#{url}"
     Rails.logger.info "Invoking embedly with #{api_url}..."
     JSON.parse(Curl.get(api_url).body_str)
   end
